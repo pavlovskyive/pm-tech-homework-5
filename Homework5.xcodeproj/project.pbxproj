@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7920878225C5BA5E008B1D54 /* ConfettiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7920878125C5BA5E008B1D54 /* ConfettiViewController.swift */; };
+		7920878625C5C1FD008B1D54 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7920878525C5C1FD008B1D54 /* UIColor.swift */; };
+		7920878925C5C6AB008B1D54 /* FireworksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7920878825C5C6AB008B1D54 /* FireworksViewController.swift */; };
+		7920878C25C5D664008B1D54 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7920878B25C5D664008B1D54 /* ProgressViewController.swift */; };
 		79BD935C25C2CFC80054DB44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD935B25C2CFC80054DB44 /* AppDelegate.swift */; };
 		79BD935E25C2CFC80054DB44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD935D25C2CFC80054DB44 /* SceneDelegate.swift */; };
 		79BD936525C2CFCC0054DB44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BD936425C2CFCC0054DB44 /* Assets.xcassets */; };
@@ -14,9 +18,16 @@
 		79BD937325C2D0A10054DB44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD937225C2D0A10054DB44 /* ViewController.swift */; };
 		79C8589825C30CCB00C6DF4E /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8589725C30CCB00C6DF4E /* RecordViewController.swift */; };
 		79EB3C9925C594A200D37E33 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EB3C9825C594A200D37E33 /* UIFont.swift */; };
+		79EC7BFE25C59AC70098AB13 /* SnowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EC7BFD25C59AC70098AB13 /* SnowViewController.swift */; };
+		79EC7C0225C59CEF0098AB13 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EC7C0125C59CEF0098AB13 /* GradientView.swift */; };
+		79EC7C0525C59E4E0098AB13 /* ParticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EC7C0425C59E4E0098AB13 /* ParticleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7920878125C5BA5E008B1D54 /* ConfettiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiViewController.swift; sourceTree = "<group>"; };
+		7920878525C5C1FD008B1D54 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		7920878825C5C6AB008B1D54 /* FireworksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworksViewController.swift; sourceTree = "<group>"; };
+		7920878B25C5D664008B1D54 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		79BD935825C2CFC80054DB44 /* Homework5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homework5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79BD935B25C2CFC80054DB44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79BD935D25C2CFC80054DB44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +37,9 @@
 		79BD937225C2D0A10054DB44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		79C8589725C30CCB00C6DF4E /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		79EB3C9825C594A200D37E33 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		79EC7BFD25C59AC70098AB13 /* SnowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowViewController.swift; sourceTree = "<group>"; };
+		79EC7C0125C59CEF0098AB13 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		79EC7C0425C59E4E0098AB13 /* ParticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +58,10 @@
 			children = (
 				79BD937225C2D0A10054DB44 /* ViewController.swift */,
 				79C8589725C30CCB00C6DF4E /* RecordViewController.swift */,
+				79EC7BFD25C59AC70098AB13 /* SnowViewController.swift */,
+				7920878125C5BA5E008B1D54 /* ConfettiViewController.swift */,
+				7920878825C5C6AB008B1D54 /* FireworksViewController.swift */,
+				7920878B25C5D664008B1D54 /* ProgressViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -85,21 +103,14 @@
 		79BD935A25C2CFC80054DB44 /* Homework5 */ = {
 			isa = PBXGroup;
 			children = (
+				79EC7C0025C59CD80098AB13 /* View */,
 				79EB3C9625C5890800D37E33 /* Helper */,
-				79C8589B25C30D4F00C6DF4E /* View */,
 				799F566825C2E548004A8509 /* Storyboard */,
 				799F566725C2E538004A8509 /* Application */,
 				799F566625C2E51B004A8509 /* ViewController */,
 				79BD936425C2CFCC0054DB44 /* Assets.xcassets */,
 			);
 			path = Homework5;
-			sourceTree = "<group>";
-		};
-		79C8589B25C30D4F00C6DF4E /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		79EB3C9625C5890800D37E33 /* Helper */ = {
@@ -114,8 +125,18 @@
 			isa = PBXGroup;
 			children = (
 				79EB3C9825C594A200D37E33 /* UIFont.swift */,
+				7920878525C5C1FD008B1D54 /* UIColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79EC7C0025C59CD80098AB13 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				79EC7C0125C59CEF0098AB13 /* GradientView.swift */,
+				79EC7C0425C59E4E0098AB13 /* ParticleView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,11 +208,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7920878925C5C6AB008B1D54 /* FireworksViewController.swift in Sources */,
 				79BD937325C2D0A10054DB44 /* ViewController.swift in Sources */,
 				79BD935C25C2CFC80054DB44 /* AppDelegate.swift in Sources */,
+				7920878C25C5D664008B1D54 /* ProgressViewController.swift in Sources */,
 				79BD935E25C2CFC80054DB44 /* SceneDelegate.swift in Sources */,
 				79EB3C9925C594A200D37E33 /* UIFont.swift in Sources */,
+				7920878225C5BA5E008B1D54 /* ConfettiViewController.swift in Sources */,
+				79EC7C0525C59E4E0098AB13 /* ParticleView.swift in Sources */,
+				79EC7C0225C59CEF0098AB13 /* GradientView.swift in Sources */,
 				79C8589825C30CCB00C6DF4E /* RecordViewController.swift in Sources */,
+				79EC7BFE25C59AC70098AB13 /* SnowViewController.swift in Sources */,
+				7920878625C5C1FD008B1D54 /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

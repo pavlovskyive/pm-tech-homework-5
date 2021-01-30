@@ -11,7 +11,13 @@ class ViewController: UIViewController {
     
     // MARK: - Variables
     
-    let data = [RecordViewController()]
+    let data = [
+        RecordViewController(),
+        SnowViewController(),
+        ConfettiViewController(),
+        FireworksViewController(),
+        ProgressViewController()
+    ]
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

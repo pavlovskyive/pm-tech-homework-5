@@ -18,6 +18,7 @@ class RecordViewController: UIViewController {
     
         titleLabel.font = .rounded(ofSize: 48, weight: .bold)
         titleLabel.numberOfLines = 3
+        titleLabel.textColor = .systemRed
         
         titleLabel.text = "Record Animation"
         
@@ -95,7 +96,7 @@ class RecordViewController: UIViewController {
                 clockwise: true)
             
             shapeLayer.path = circlePath.cgPath
-            shapeLayer.fillColor = UIColor.red.cgColor
+            shapeLayer.fillColor = UIColor.systemRed.cgColor
             // Opacity is zero for animation to begin seamlessly.
             shapeLayer.opacity = 0
             
