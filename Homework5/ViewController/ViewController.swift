@@ -9,7 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let data = [UIViewController(), UIViewController(), UIViewController()]
+    // MARK: - Variables
+    
+    let data = [RecordViewController()]
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -41,6 +43,15 @@ class ViewController: UIViewController {
         pageControl.currentPage = 0
         pageControl.numberOfPages = data.count
         
+        if #available(iOS 13.0, *) {
+            pageControl.pageIndicatorTintColor = UIColor.label.withAlphaComponent(0.2)
+            pageControl.currentPageIndicatorTintColor = .label
+        } else {
+            pageControl.pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
+            pageControl.currentPageIndicatorTintColor = .black
+        }
+        
+        
         pageControl.addTarget(nil, action: #selector(changePage), for: .valueChanged)
         
         pageControl.translatesAutoresizingMaskIntoConstraints = false
@@ -48,9 +59,17 @@ class ViewController: UIViewController {
         return pageControl
     }()
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setup()
+    }
+    
+    // MARK: - Setups
+    
+    private func setup() {
         view.addSubview(collectionView)
         view.addSubview(pageControl)
         setupLayoutConstraints()
@@ -71,6 +90,9 @@ class ViewController: UIViewController {
 }
 
 extension ViewController {
+    
+    // MARK: - Actions
+    
     @objc func changePage() {
         let indexPath = IndexPath(row: pageControl.currentPage, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -78,6 +100,9 @@ extension ViewController {
 }
 
 extension ViewController: UICollectionViewDataSource {
+    
+    // MARK: - Data Source
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         data.count
     }
@@ -87,19 +112,16 @@ extension ViewController: UICollectionViewDataSource {
         
         let cellViewController = data[indexPath.row]
         cellViewController.view.frame = cell.bounds
-        cellViewController.view.backgroundColor = indexPath.row % 2 == 0 ? .red : .blue
         cell.addSubview(cellViewController.view)
         
         return cell
     }
 }
 
-extension ViewController: UICollectionViewDelegate, UIScrollViewDelegate {
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let pageIndex = round(scrollView.contentOffset.x / view.frame.width)
-//        pageControl.currentPage = Int(pageIndex)
-//    }
-//
+extension ViewController: UICollectionViewDelegate {
+    
+    // MARK: - Scroll View Delegate
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x / view.frame.width)
         pageControl.currentPage = Int(pageIndex)

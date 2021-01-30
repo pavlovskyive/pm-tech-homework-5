@@ -18,10 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Do nothing.
         } else {
             window = UIWindow()
-            window?.makeKeyAndVisible()
             
             let viewController = ViewController()
+            
             window?.rootViewController = viewController
+            window?.makeKeyAndVisible()
         }
         
         return true

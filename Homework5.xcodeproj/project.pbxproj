@@ -12,6 +12,8 @@
 		79BD936525C2CFCC0054DB44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BD936425C2CFCC0054DB44 /* Assets.xcassets */; };
 		79BD936825C2CFCC0054DB44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79BD936625C2CFCC0054DB44 /* LaunchScreen.storyboard */; };
 		79BD937325C2D0A10054DB44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD937225C2D0A10054DB44 /* ViewController.swift */; };
+		79C8589825C30CCB00C6DF4E /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C8589725C30CCB00C6DF4E /* RecordViewController.swift */; };
+		79EB3C9925C594A200D37E33 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EB3C9825C594A200D37E33 /* UIFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		79BD936725C2CFCC0054DB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79BD936925C2CFCC0054DB44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79BD937225C2D0A10054DB44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		79C8589725C30CCB00C6DF4E /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		79EB3C9825C594A200D37E33 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				79BD937225C2D0A10054DB44 /* ViewController.swift */,
+				79C8589725C30CCB00C6DF4E /* RecordViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -80,12 +85,37 @@
 		79BD935A25C2CFC80054DB44 /* Homework5 */ = {
 			isa = PBXGroup;
 			children = (
+				79EB3C9625C5890800D37E33 /* Helper */,
+				79C8589B25C30D4F00C6DF4E /* View */,
 				799F566825C2E548004A8509 /* Storyboard */,
 				799F566725C2E538004A8509 /* Application */,
 				799F566625C2E51B004A8509 /* ViewController */,
 				79BD936425C2CFCC0054DB44 /* Assets.xcassets */,
 			);
 			path = Homework5;
+			sourceTree = "<group>";
+		};
+		79C8589B25C30D4F00C6DF4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		79EB3C9625C5890800D37E33 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				79EB3C9B25C594A600D37E33 /* Extensions */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		79EB3C9B25C594A600D37E33 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				79EB3C9825C594A200D37E33 /* UIFont.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +190,8 @@
 				79BD937325C2D0A10054DB44 /* ViewController.swift in Sources */,
 				79BD935C25C2CFC80054DB44 /* AppDelegate.swift in Sources */,
 				79BD935E25C2CFC80054DB44 /* SceneDelegate.swift in Sources */,
+				79EB3C9925C594A200D37E33 /* UIFont.swift in Sources */,
+				79C8589825C30CCB00C6DF4E /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
