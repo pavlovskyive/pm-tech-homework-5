@@ -44,9 +44,9 @@ class ParticleView: UIView {
             emitter.emitterPosition = CGPoint(x: bounds.midX, y: -10)
             emitter.emitterSize = CGSize(width: bounds.size.width, height: 1)
 
-            let near = generateSnowEmitterCell(color: UIColor(white: 1, alpha: 1), velocity: 100, scale: 0.3)
-            let middle = generateSnowEmitterCell(color: UIColor(white: 1, alpha: 0.66), velocity: 80, scale: 0.2)
-            let far = generateSnowEmitterCell(color: UIColor(white: 1, alpha: 0.33), velocity: 60, scale: 0.1)
+            let near = generateSnowEmitterCell(imageName: "circle", color: UIColor(white: 1, alpha: 1), velocity: 100, scale: 0.4)
+            let middle = generateSnowEmitterCell(imageName: "snowParticle", color: UIColor(white: 1, alpha: 0.5), velocity: 80, scale: 0.2)
+            let far = generateSnowEmitterCell(imageName: "snowParticle", color: UIColor(white: 1, alpha: 0.2), velocity: 60, scale: 0.1)
 
             emitter.emitterCells = [near, middle, far]
             
@@ -57,9 +57,7 @@ class ParticleView: UIView {
             
             var emitterCells = [CAEmitterCell]()
 
-            for _ in 0...10 {
-                emitterCells.append(generateConfetticEmitterCell())
-            }
+            emitterCells = generateConfettiEmitterCells()
             
             emitter.emitterCells = emitterCells
             
@@ -76,7 +74,7 @@ class ParticleView: UIView {
 
     }
     
-    private func generateSnowEmitterCell(color: UIColor, velocity: CGFloat, scale: CGFloat) -> CAEmitterCell {
+    private func generateSnowEmitterCell(imageName: String, color: UIColor, velocity: CGFloat, scale: CGFloat) -> CAEmitterCell {
         let cell = CAEmitterCell()
         cell.birthRate = 10
         cell.lifetime = 20
@@ -89,42 +87,59 @@ class ParticleView: UIView {
         cell.scale = scale
         cell.scaleRange = scale / 3
 
-        cell.contents = UIImage(named: "snowParticle")?.cgImage
+        cell.contents = UIImage(named: imageName)?.cgImage
         return cell
     }
     
-    private func generateConfetticEmitterCell() -> CAEmitterCell {
-        let cell = CAEmitterCell()
+    private func generateConfettiEmitterCells() -> [CAEmitterCell] {
         
-        cell.birthRate = 2
-        cell.lifetime = 30
-        cell.lifetimeRange = 0
-        cell.velocity = 120
-        cell.velocityRange = 50
-        cell.emissionLongitude = CGFloat(Double.pi)
-        cell.emissionRange = 1
-        cell.spin = 0
-        cell.spinRange = 4
-        cell.color = UIColor.randomConfettiColor().cgColor
-        cell.scaleRange = 0.5
-        cell.scale = 0.8
+        let images = [
+            UIImage(named: "circle"),
+            UIImage(named: "confettiParticle"),
+            UIImage(named: "star")
+        ]
         
-        cell.contents = UIImage(named: "confettiParticle")?.cgImage
-        return cell
+        var cells = [CAEmitterCell]()
+        for _ in 0...20 {
+            let cell = CAEmitterCell()
+
+            cell.birthRate = 2
+            cell.lifetime = 30
+            cell.lifetimeRange = 0
+            cell.velocity = 50
+            cell.yAcceleration = 90
+            cell.velocityRange = 50
+            cell.emissionLongitude = CGFloat(Double.pi)
+            cell.emissionRange = 1
+            cell.spin = 0
+            cell.spinRange = 4
+            cell.color = UIColor.randomConfettiColor().cgColor
+            cell.scaleRange = 0.5
+            cell.scale = 0.8
+            cell.contents = images.randomElement()!?.cgImage
+            
+            cell.setValue("plane", forKey: "particleType")
+            cell.setValue(Double.pi, forKey: "orientationRange")
+            cell.setValue(Double.pi / 2, forKey: "orientationLongitude")
+            cell.setValue(Double.pi / 2, forKey: "orientationLatitude")
+            
+            cells.append(cell)
+        }
+        
+        return cells
     }
     
     private func generateFireworksEmitterCell() -> CAEmitterCell {
         let cell = CAEmitterCell()
 
-        cell.name = "Parent"
         cell.birthRate = 1.0
-        cell.lifetime = 2.5
+        cell.lifetime = 4
         cell.lifetimeRange = 0
-        cell.velocity = 100
-        cell.velocityRange = 75
-        cell.yAcceleration = -100
+        cell.velocity = 250
+        cell.velocityRange = 150
+        cell.yAcceleration = 80
         cell.emissionLongitude = -90 * (.pi / 180)
-        cell.emissionRange = 45 * (.pi / 180)
+        cell.emissionRange = 30 * (.pi / 180)
         cell.scale = 0
         cell.color = UIColor.white.cgColor
         cell.redRange = 0.9
@@ -138,6 +153,7 @@ class ParticleView: UIView {
         trailCell.beginTime = 0
         trailCell.duration = 2
         trailCell.velocity = 80
+        trailCell.velocityRange = 50
         trailCell.velocityRange = 100
         trailCell.xAcceleration = 100
         trailCell.yAcceleration = 350
@@ -153,13 +169,14 @@ class ParticleView: UIView {
         explosionCell.lifetime = 15
         explosionCell.beginTime = 2
         explosionCell.duration = 0.1
-        explosionCell.velocity = 190
+        explosionCell.velocity = 150
+        explosionCell.velocityRange = 70
         explosionCell.yAcceleration = 80
         explosionCell.emissionRange = 360 * (.pi / 180)
         explosionCell.spin = 100 * (.pi / 180)
         explosionCell.scale = 1.5
-        explosionCell.scaleSpeed = 0.3
-        explosionCell.alphaSpeed = -1
+        explosionCell.scaleSpeed = 0.15
+        explosionCell.alphaSpeed = -0.7
         
         cell.emitterCells = [trailCell, explosionCell]
         

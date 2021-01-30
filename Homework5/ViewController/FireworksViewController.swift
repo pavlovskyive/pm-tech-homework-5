@@ -60,15 +60,16 @@ class FireworksViewController: UIViewController {
     // Setup View
     private func setupViews() {
         view.backgroundColor = .white
+        
+        let fireworksView = ParticleView()
+        fireworksView.emitterType = .firework
+        fireworksView.layer.masksToBounds = true
+        fireworksView.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(skyView)
+        view.addSubview(fireworksView)
         view.addSubview(titleLabel)
         view.addSubview(cityImageView)
-        
-        let snowView = ParticleView()
-        snowView.emitterType = .firework
-        snowView.layer.masksToBounds = true
-        snowView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(snowView)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         cityImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,10 +90,10 @@ class FireworksViewController: UIViewController {
             skyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             skyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            snowView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            snowView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            snowView.topAnchor.constraint(equalTo: view.topAnchor),
-            snowView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            fireworksView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fireworksView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            fireworksView.topAnchor.constraint(equalTo: view.topAnchor),
+            fireworksView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             cityImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cityImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

@@ -36,12 +36,13 @@ class ConfettiViewController: UIViewController {
     // Setup View
     private func setupViews() {
         view.backgroundColor = .white
+        
         view.addSubview(titleLabel)
         
-        let snowView = ParticleView()
-        snowView.emitterType = .confetti
-        snowView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(snowView)
+        let confettiView = ParticleView()
+        confettiView.emitterType = .confetti
+        confettiView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(confettiView)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -50,10 +51,10 @@ class ConfettiViewController: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -10),
             
-            snowView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            snowView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            snowView.topAnchor.constraint(equalTo: view.topAnchor),
-            snowView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            confettiView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            confettiView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            confettiView.topAnchor.constraint(equalTo: view.topAnchor),
+            confettiView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

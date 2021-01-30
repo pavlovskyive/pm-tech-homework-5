@@ -18,7 +18,7 @@ class ProgressViewController: UIViewController {
         titleLabel.numberOfLines = 3
         titleLabel.textColor = .systemBlue
         
-        titleLabel.text = "Progress Bar Circle Animation"
+        titleLabel.text = "Progress Bar Circle"
         
         return titleLabel
     }()
@@ -32,7 +32,19 @@ class ProgressViewController: UIViewController {
         
         slider.addTarget(self, action: #selector(handleSlider(_:)), for: .valueChanged)
         
+        slider.value = 0.7
+        
         return slider
+    }()
+    
+    lazy var button: UIButton = {
+        let button = UIButton()
+        button.setTitle("Tap me to animate progress bar", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        
+        button.addTarget(self, action: #selector(animate), for: .touchUpInside)
+        
+        return button
     }()
     
     let shapeLayer = CAShapeLayer()
@@ -53,9 +65,11 @@ class ProgressViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(titleLabel)
         view.addSubview(slider)
+        view.addSubview(button)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         slider.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20),
@@ -64,7 +78,10 @@ class ProgressViewController: UIViewController {
             
             slider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             slider.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
-            slider.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, constant: -50)
+            slider.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, constant: -50),
+            
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 10)
         ])
         
         setupShapeLayer()
@@ -72,14 +89,40 @@ class ProgressViewController: UIViewController {
     
     @objc private func handleSlider(_ sender: UISlider) {
         
-        shapeLayer.strokeEnd = CGFloat(sender.value)
+        shapeLayer.strokeStart = 1 - CGFloat(sender.value)
+    }
+    
+    @objc private func animate() {
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(1)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: .easeInEaseOut))
+        
+        let animation = CABasicAnimation(keyPath: "strokeStart")
+        animation.duration = 1
+//        animation.isRemovedOnCompletion = false
+        animation.fromValue = shapeLayer.strokeStart
+        animation.toValue = 0
+        
+        shapeLayer.strokeStart = 0
+        
+        UIView.animate(withDuration: 1,
+                       delay: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+                        self.slider.setValue(1, animated:true)
+                       })
+        
+        shapeLayer.add(animation, forKey: "shapeAnimation")
+        
+        CATransaction.commit()
     }
     
     private func setupShapeLayer() {
         
-        let circularPath = UIBezierPath(
+        let trackPath = UIBezierPath(
             arcCenter: view.center,
-            radius: 100,
+            radius: 70,
             startAngle: -.pi / 2,
             endAngle: 3 * .pi / 2,
             clockwise: true)
@@ -87,21 +130,26 @@ class ProgressViewController: UIViewController {
         // Track layer.
         
         let trackLayer = CAShapeLayer()
-        trackLayer.path = circularPath.cgPath
+        trackLayer.path = trackPath.cgPath
         
-        trackLayer.strokeColor = UIColor.systemBlue.withAlphaComponent(0.2).cgColor
-        trackLayer.fillColor = .none
-        trackLayer.lineWidth = 20
+        trackLayer.fillColor = UIColor.black.cgColor
         
         // Progress bar layer.
         
+        let circularPath = UIBezierPath(
+            arcCenter: view.center,
+            radius: 30,
+            startAngle: -.pi / 2,
+            endAngle: 3 * .pi / 2,
+            clockwise: true)
+        
         shapeLayer.path = circularPath.cgPath
         
-        shapeLayer.strokeColor = UIColor.systemBlue.cgColor
         shapeLayer.fillColor = .none
-        shapeLayer.lineWidth = 20
-        shapeLayer.strokeEnd = 0
-        shapeLayer.lineCap = .round
+        shapeLayer.lineWidth = 60
+        shapeLayer.strokeColor = UIColor.systemBlue.cgColor
+        shapeLayer.strokeStart = CGFloat(1 - slider.value)
+        shapeLayer.strokeEnd = 1
         
         view.layer.addSublayer(trackLayer)
         view.layer.addSublayer(shapeLayer)
