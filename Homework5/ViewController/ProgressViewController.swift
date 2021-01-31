@@ -11,35 +11,11 @@ class ProgressViewController: UIViewController {
     
     // MARK: - Variables
     
-    lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-    
-        titleLabel.font = .rounded(ofSize: 48, weight: .bold)
-        titleLabel.numberOfLines = 3
-        titleLabel.textColor = .systemBlue
-        
-        titleLabel.text = "Progress Bar Circle"
-        
-        return titleLabel
-    }()
-    
-    lazy var slider: UISlider = {
-        let slider = UISlider()
-        slider.minimumValue = 0
-        slider.maximumValue = 1
-        
-        slider.minimumTrackTintColor = .systemBlue
-        
-        slider.addTarget(self, action: #selector(handleSlider(_:)), for: .valueChanged)
-        
-        slider.value = 0.7
-        
-        return slider
-    }()
+    lazy var titleLabel = TitleLabel(text: "Circle Progress Bar Animation", color: .systemBlue)
     
     lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitle("Tap me to animate progress bar", for: .normal)
+        button.setTitle("Tap to animate progress bar", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         
         button.addTarget(self, action: #selector(animate), for: .touchUpInside)
@@ -57,6 +33,13 @@ class ProgressViewController: UIViewController {
         setupViews()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        shapeLayer.frame = view.bounds
+        shapeLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
+    }
     
     // MARK: - Methods
 
@@ -64,11 +47,9 @@ class ProgressViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(titleLabel)
-        view.addSubview(slider)
         view.addSubview(button)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        slider.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -76,46 +57,68 @@ class ProgressViewController: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -10),
             
-            slider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            slider.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
-            slider.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, constant: -50),
-            
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 10)
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150)
         ])
         
         setupShapeLayer()
     }
     
-    @objc private func handleSlider(_ sender: UISlider) {
-        
-        shapeLayer.strokeStart = 1 - CGFloat(sender.value)
-    }
-    
     @objc private func animate() {
         
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(1)
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: .easeInEaseOut))
+        shapeLayer.strokeStart = 1
         
-        let animation = CABasicAnimation(keyPath: "strokeStart")
-        animation.duration = 1
-//        animation.isRemovedOnCompletion = false
-        animation.fromValue = shapeLayer.strokeStart
-        animation.toValue = 0
+        var animations = [CABasicAnimation]()
+        
+        let strokeAnimation = CASpringAnimation(keyPath: "strokeStart")
+        strokeAnimation.damping = 30
+        strokeAnimation.duration = strokeAnimation.settlingDuration
+        strokeAnimation.fromValue = shapeLayer.strokeStart
+        strokeAnimation.toValue = 0
         
         shapeLayer.strokeStart = 0
         
-        UIView.animate(withDuration: 1,
-                       delay: 0,
-                       options: .curveEaseInOut,
-                       animations: {
-                        self.slider.setValue(1, animated:true)
-                       })
+        animations.append(strokeAnimation)
         
-        shapeLayer.add(animation, forKey: "shapeAnimation")
+        let colorChangeAnimation = CABasicAnimation(keyPath: "strokeColor")
+        colorChangeAnimation.duration = 1
+        colorChangeAnimation.toValue = UIColor.systemGreen.cgColor
+        colorChangeAnimation.fillMode = .forwards
+        colorChangeAnimation.isRemovedOnCompletion = false
         
-        CATransaction.commit()
+        animations.append(colorChangeAnimation)
+        
+        let decreaseAnimation = CASpringAnimation(keyPath: "transform.scale")
+        decreaseAnimation.damping = 5
+        decreaseAnimation.duration = decreaseAnimation.settlingDuration
+        decreaseAnimation.beginTime = strokeAnimation.duration + 1
+        decreaseAnimation.fromValue = 1
+        decreaseAnimation.toValue = 0.7
+        decreaseAnimation.fillMode = .forwards
+        decreaseAnimation.isRemovedOnCompletion = false
+        
+        animations.append(decreaseAnimation)
+        
+        let increaseAnimation = CABasicAnimation(keyPath: "transform.scale")
+        increaseAnimation.duration = 0.2
+        increaseAnimation.beginTime = strokeAnimation.duration + decreaseAnimation.duration
+        increaseAnimation.fromValue = 0.7
+        increaseAnimation.toValue = 10
+        increaseAnimation.fillMode = .forwards
+        increaseAnimation.isRemovedOnCompletion = false
+        
+        animations.append(increaseAnimation)
+        
+        let group = CAAnimationGroup()
+        group.animations = animations
+        group.duration = (group.animations?.last?.beginTime ?? 0) + (group.animations?.last?.duration ?? 0)
+        group.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        group.fillMode = .forwards
+        group.isRemovedOnCompletion = false
+        
+        group.delegate = self
+        
+        shapeLayer.add(group, forKey: "groupAnimation")
     }
     
     private func setupShapeLayer() {
@@ -148,10 +151,31 @@ class ProgressViewController: UIViewController {
         shapeLayer.fillColor = .none
         shapeLayer.lineWidth = 60
         shapeLayer.strokeColor = UIColor.systemBlue.cgColor
-        shapeLayer.strokeStart = CGFloat(1 - slider.value)
+        shapeLayer.strokeStart = 1
         shapeLayer.strokeEnd = 1
         
         view.layer.addSublayer(trackLayer)
         view.layer.addSublayer(shapeLayer)
+        
+        view.layer.masksToBounds = true
+    }
+}
+
+extension ProgressViewController: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        button.isEnabled = false
+        
+        titleLabel.alpha = 0
+        titleLabel.textColor = .white
+        
+        UIView.transition(
+            with: titleLabel,
+            duration: 0.5,
+            options: .curveEaseInOut,
+            animations: {
+                self.view.bringSubviewToFront(self.titleLabel)
+                self.titleLabel.text = "Progress Bar\nCompleted"
+                self.titleLabel.alpha = 1
+            })
     }
 }

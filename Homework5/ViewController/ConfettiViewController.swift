@@ -11,14 +11,19 @@ class ConfettiViewController: UIViewController {
     
     // MARK: - Variables
     
-    lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-    
-        titleLabel.font = .rounded(ofSize: 48, weight: .bold)
-        titleLabel.numberOfLines = 3
-        titleLabel.textColor = .systemRed
+    lazy var titleLabel: TitleLabel = {
         
-        titleLabel.text = "Happy Birthday!"
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "Confetti Animation")
+        
+        for i in 0..<attributedString.length {
+            let range = NSRange(location: i, length: 1)
+            let randomColor = UIColor.randomConfettiColor()
+            
+            attributedString.addAttribute(.foregroundColor, value: randomColor, range: range)
+        }
+        
+        let titleLabel = TitleLabel()
+        titleLabel.attributedText = attributedString
         
         return titleLabel
     }()

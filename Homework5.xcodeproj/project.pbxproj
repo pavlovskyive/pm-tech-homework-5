@@ -11,6 +11,7 @@
 		7920878625C5C1FD008B1D54 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7920878525C5C1FD008B1D54 /* UIColor.swift */; };
 		7920878925C5C6AB008B1D54 /* FireworksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7920878825C5C6AB008B1D54 /* FireworksViewController.swift */; };
 		7920878C25C5D664008B1D54 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7920878B25C5D664008B1D54 /* ProgressViewController.swift */; };
+		794E811B25C6ACA9008210E9 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E811A25C6ACA9008210E9 /* TitleLabel.swift */; };
 		79BD935C25C2CFC80054DB44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD935B25C2CFC80054DB44 /* AppDelegate.swift */; };
 		79BD935E25C2CFC80054DB44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD935D25C2CFC80054DB44 /* SceneDelegate.swift */; };
 		79BD936525C2CFCC0054DB44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BD936425C2CFCC0054DB44 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		7920878525C5C1FD008B1D54 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		7920878825C5C6AB008B1D54 /* FireworksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworksViewController.swift; sourceTree = "<group>"; };
 		7920878B25C5D664008B1D54 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		794E811A25C6ACA9008210E9 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
 		79BD935825C2CFC80054DB44 /* Homework5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homework5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79BD935B25C2CFC80054DB44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79BD935D25C2CFC80054DB44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				79EC7C0125C59CEF0098AB13 /* GradientView.swift */,
 				79EC7C0425C59E4E0098AB13 /* ParticleView.swift */,
+				794E811A25C6ACA9008210E9 /* TitleLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				7920878925C5C6AB008B1D54 /* FireworksViewController.swift in Sources */,
 				79BD937325C2D0A10054DB44 /* ViewController.swift in Sources */,
 				79BD935C25C2CFC80054DB44 /* AppDelegate.swift in Sources */,
+				794E811B25C6ACA9008210E9 /* TitleLabel.swift in Sources */,
 				7920878C25C5D664008B1D54 /* ProgressViewController.swift in Sources */,
 				79BD935E25C2CFC80054DB44 /* SceneDelegate.swift in Sources */,
 				79EB3C9925C594A200D37E33 /* UIFont.swift in Sources */,

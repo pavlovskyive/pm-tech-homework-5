@@ -22,17 +22,7 @@ class SnowViewController: UIViewController {
         return view
     }()
     
-    lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-    
-        titleLabel.font = .rounded(ofSize: 48, weight: .bold)
-        titleLabel.numberOfLines = 3
-        titleLabel.textColor = .white
-        
-        titleLabel.text = "Snow Animation"
-        
-        return titleLabel
-    }()
+    lazy var titleLabel = TitleLabel(text: "Snow Animation", color: .white)
     
     // MARK: - Lifecycle
     

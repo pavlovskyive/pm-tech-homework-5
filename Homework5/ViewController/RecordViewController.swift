@@ -13,17 +13,7 @@ class RecordViewController: UIViewController {
     
     lazy var circleShapeLayers = createCircleShapeLayer(numberOfLayers: 3)
     
-    lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-    
-        titleLabel.font = .rounded(ofSize: 48, weight: .bold)
-        titleLabel.numberOfLines = 3
-        titleLabel.textColor = .systemRed
-        
-        titleLabel.text = "Record Animation"
-        
-        return titleLabel
-    }()
+    lazy var titleLabel = TitleLabel(text: "Record Animation", color: .systemRed)
     
     // MARK: - Lifecycle
     
