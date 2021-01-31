@@ -65,7 +65,8 @@ class ParticleView: UIView {
             emitter.emitterShape = .point
             emitter.emitterPosition = CGPoint(x: bounds.midX, y: bounds.maxY - 100)
             
-            emitter.emitterCells = [generateFireworksEmitterCell()]
+            emitter.emitterCells = [generateFireworksEmitterCell(birthRate: 1.7),
+                                    generateFireworksEmitterCell(birthRate: 0.7)]
             
         default:
             break
@@ -102,7 +103,7 @@ class ParticleView: UIView {
         var cells = [CAEmitterCell]()
         for _ in 0...20 {
             let cell = CAEmitterCell()
-
+            
             cell.birthRate = 2
             cell.lifetime = 30
             cell.lifetimeRange = 0
@@ -114,8 +115,9 @@ class ParticleView: UIView {
             cell.spin = 0
             cell.spinRange = 4
             cell.color = UIColor.randomConfettiColor().cgColor
-            cell.scaleRange = 0.5
+            cell.scaleRange = 0.7
             cell.scale = 0.8
+            cell.alphaRange = 0.3
             cell.contents = images.randomElement()!?.cgImage
             
             cell.setValue("plane", forKey: "particleType")
@@ -129,10 +131,10 @@ class ParticleView: UIView {
         return cells
     }
     
-    private func generateFireworksEmitterCell() -> CAEmitterCell {
+    private func generateFireworksEmitterCell(birthRate: Float) -> CAEmitterCell {
         let cell = CAEmitterCell()
 
-        cell.birthRate = 1.0
+        cell.birthRate = birthRate
         cell.lifetime = 4
         cell.lifetimeRange = 0
         cell.velocity = 250
@@ -142,9 +144,9 @@ class ParticleView: UIView {
         cell.emissionRange = 30 * (.pi / 180)
         cell.scale = 0
         cell.color = UIColor.white.cgColor
-        cell.redRange = 0.9
-        cell.greenRange = 0.9
-        cell.blueRange = 0.9
+        cell.redRange = 1
+        cell.greenRange = 1
+        cell.blueRange = 1
         
         let trailCell = CAEmitterCell()
         trailCell.contents = UIImage(named: "circle")?.cgImage
