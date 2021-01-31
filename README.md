@@ -6,15 +6,16 @@
 
 #### Screen records: 
 
-Record Animation                       |  Snow Animation
-:-------------------------------------:|:------------------------------------:
-![](/Screenshots/RecordAnimation.gif)  |  ![](/Screenshots/SnowAnimation.gif)
+Snow Animation                              |  Confetti Animation
+:------------------------------------------:|:----------------------------------------:
+![](/Screenshots/SnowAnimation.gif)         |  ![](/Screenshots/ConfettiAnimation.gif)
 
-Confetti Animation                     |  Firework Animation
-:-------------------------------------:|:----------------------------------------:
-![](/Screenshots/ConfettiAnimation.gif)|  ![](/Screenshots/FireworksAnimation.gif)
+Firework Animation                          |  Practice Assignment
+:------------------------------------------:|:----------------------------------------:
+ ![](/Screenshots/FireworksAnimation.gif)   |  ![](/Screenshots/RecordAnimation.gif)
 
-Bonus: Progress Bar Animation             |
-:----------------------------------------:|
-![](/Screenshots/ProgressBarAnimation.gif)|
+
+Bonus: Progress Bar Animation               |
+:------------------------------------------:|
+![](/Screenshots/ProgressBarAnimation.gif)  |
 
