@@ -12,19 +12,12 @@ class ProgressViewController: UIViewController {
     
     // MARK: - Variables
     
-    lazy var titleLabel = TitleLabel(text: "Circle Progress Bar Animation", color: UIColor.systemBlue)
+    var titleLabel = TitleLabel()
     
-    lazy var button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Tap to animate progress bar", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        
-        button.addTarget(self, action: #selector(animate), for: .touchUpInside)
-        
-        return button
-    }()
+    var button = UIButton()
     
     let shapeLayer = CAShapeLayer()
+    let trackLayer = CAShapeLayer()
     
     // MARK: - Lifecycle
     
@@ -46,6 +39,14 @@ class ProgressViewController: UIViewController {
 
     // Setup View
     private func setupViews() {
+        
+        titleLabel = TitleLabel(text: "Circle Progress Bar Animation", color: UIColor.systemBlue)
+        
+        button = UIButton()
+        button.setTitle("Tap to animate progress bar", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        
+        button.addTarget(self, action: #selector(animate), for: .touchUpInside)
         
         if #available(iOS 13, *) {
             view.backgroundColor = .systemBackground
@@ -72,6 +73,8 @@ class ProgressViewController: UIViewController {
     }
     
     @objc private func animate() {
+        
+        button.isEnabled = false
         
         shapeLayer.strokeStart = 1
         
@@ -128,6 +131,11 @@ class ProgressViewController: UIViewController {
         shapeLayer.add(group, forKey: "groupAnimation")
     }
     
+    @objc private func resetViewController() {
+        self.button.isEnabled = false
+        viewDidLoad()
+    }
+    
     private func setupShapeLayer() {
         
         let trackPath = UIBezierPath(
@@ -139,7 +147,6 @@ class ProgressViewController: UIViewController {
         
         // Track layer.
         
-        let trackLayer = CAShapeLayer()
         trackLayer.path = trackPath.cgPath
         
         if #available(iOS 13.0, *) {
@@ -174,10 +181,13 @@ class ProgressViewController: UIViewController {
 
 extension ProgressViewController: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        button.isEnabled = false
         
         titleLabel.alpha = 0
         titleLabel.textColor = UIColor.white
+        
+        button.alpha = 0
+        button.setTitleColor(.white, for: .normal)
+        button.removeTarget(self, action: #selector(animate), for: .touchUpInside)
         
         UIView.transition(
             with: titleLabel,
@@ -187,6 +197,19 @@ extension ProgressViewController: CAAnimationDelegate {
                 self.view.bringSubviewToFront(self.titleLabel)
                 self.titleLabel.text = "Progress Bar\nCompleted"
                 self.titleLabel.alpha = 1
+            })
+        
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.5,
+            options: .curveEaseInOut,
+            animations: {
+                self.view.bringSubviewToFront(self.button)
+                self.button.setTitle("Reset animation", for: .normal)
+                self.button.alpha = 1
+            }, completion: {_ in
+                self.button.isEnabled = true
+                self.button.addTarget(self, action: #selector(self.resetViewController), for: .touchUpInside)
             })
     }
 }
