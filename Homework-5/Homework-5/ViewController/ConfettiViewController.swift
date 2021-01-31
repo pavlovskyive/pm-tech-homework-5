@@ -41,14 +41,19 @@ class ConfettiViewController: UIViewController {
 
     // Setup View
     private func setupViews() {
-        view.backgroundColor = .white
+        
+        if #available(iOS 13, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
         
         view.addSubview(titleLabel)
         
         let confettiView = ParticleView()
         confettiView.emitterType = .confetti
         confettiView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(confettiView)
+        view.insertSubview(confettiView, at: 0)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         

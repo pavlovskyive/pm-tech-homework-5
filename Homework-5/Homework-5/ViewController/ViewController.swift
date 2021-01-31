@@ -75,6 +75,13 @@ class ViewController: UIViewController {
     // MARK: - Setups
     
     private func setup() {
+        
+        if #available(iOS 13, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
+        
         view.addSubview(collectionView)
         view.addSubview(pageControl)
         setupLayoutConstraints()

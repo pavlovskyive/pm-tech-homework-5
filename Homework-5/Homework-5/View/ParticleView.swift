@@ -104,14 +104,14 @@ class ParticleView: UIView {
         for _ in 0...20 {
             let cell = CAEmitterCell()
             
-            cell.birthRate = 2
+            cell.birthRate = 5
             cell.lifetime = 30
             cell.lifetimeRange = 0
             cell.velocity = 50
             cell.yAcceleration = 90
             cell.velocityRange = 50
             cell.emissionLongitude = CGFloat(Double.pi)
-            cell.emissionRange = 1
+            cell.emissionRange = 3
             cell.spin = 0
             cell.spinRange = 4
             cell.color = UIColor.randomConfettiColor().cgColor

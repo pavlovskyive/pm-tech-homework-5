@@ -57,7 +57,13 @@ class ViewController: UIViewController {
 
     // Setup View
     private func setupViews() {
-        view.backgroundColor = .white
+        
+        if #available(iOS 13, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
+        
         view.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

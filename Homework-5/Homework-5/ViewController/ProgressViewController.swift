@@ -46,7 +46,13 @@ class ProgressViewController: UIViewController {
 
     // Setup View
     private func setupViews() {
-        view.backgroundColor = .white
+        
+        if #available(iOS 13, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
+
         view.addSubview(titleLabel)
         view.addSubview(button)
         
@@ -136,7 +142,11 @@ class ProgressViewController: UIViewController {
         let trackLayer = CAShapeLayer()
         trackLayer.path = trackPath.cgPath
         
-        trackLayer.fillColor = UIColor.black.cgColor
+        if #available(iOS 13.0, *) {
+            trackLayer.fillColor = UIColor.quaternaryLabel.cgColor
+        } else {
+            trackLayer.fillColor = UIColor.black.cgColor
+        }
         
         // Progress bar layer.
         
