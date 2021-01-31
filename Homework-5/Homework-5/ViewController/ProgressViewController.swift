@@ -38,13 +38,22 @@ class ProgressViewController: UIViewController {
     // MARK: - Methods
 
     // Setup View
-    private func setupViews() {
+    @objc private func setupViews() {
         
-        titleLabel = TitleLabel(text: "Circle Progress Bar Animation", color: UIColor.systemBlue)
+        if !titleLabel.isDescendant(of: view) {
+            view.addSubview(titleLabel)
+        }
         
-        button = UIButton()
-        button.setTitle("Tap to animate progress bar", for: .normal)
+        if !button.isDescendant(of: view) {
+            view.addSubview(button)
+        }
+        
+        titleLabel.text =  "Circle Progress Bar Animation"
+        titleLabel.textColor = .systemBlue
+
+        button.setTitle("Tap to animate xrogress bar", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.5), for: .disabled)
         
         button.addTarget(self, action: #selector(animate), for: .touchUpInside)
         
@@ -53,9 +62,6 @@ class ProgressViewController: UIViewController {
         } else {
             view.backgroundColor = .white
         }
-
-        view.addSubview(titleLabel)
-        view.addSubview(button)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +72,7 @@ class ProgressViewController: UIViewController {
             titleLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -10),
             
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150)
+            button.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50)
         ])
         
         setupShapeLayer()
@@ -99,7 +105,7 @@ class ProgressViewController: UIViewController {
         animations.append(colorChangeAnimation)
         
         let decreaseAnimation = CASpringAnimation(keyPath: "transform.scale")
-        decreaseAnimation.damping = 5
+        decreaseAnimation.damping = 10
         decreaseAnimation.duration = decreaseAnimation.settlingDuration
         decreaseAnimation.beginTime = strokeAnimation.duration + 1
         decreaseAnimation.fromValue = 1
@@ -129,11 +135,6 @@ class ProgressViewController: UIViewController {
         group.delegate = self
         
         shapeLayer.add(group, forKey: "groupAnimation")
-    }
-    
-    @objc private func resetViewController() {
-        self.button.isEnabled = false
-        viewDidLoad()
     }
     
     private func setupShapeLayer() {
@@ -184,17 +185,20 @@ extension ProgressViewController: CAAnimationDelegate {
         
         titleLabel.alpha = 0
         titleLabel.textColor = UIColor.white
+        view.bringSubviewToFront(self.titleLabel)
         
         button.alpha = 0
         button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.white, for: .disabled)
         button.removeTarget(self, action: #selector(animate), for: .touchUpInside)
+        self.button.addTarget(self, action: #selector(self.setupViews), for: .touchUpInside)
+        view.bringSubviewToFront(self.button)
         
-        UIView.transition(
-            with: titleLabel,
-            duration: 0.5,
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
             options: .curveEaseInOut,
             animations: {
-                self.view.bringSubviewToFront(self.titleLabel)
                 self.titleLabel.text = "Progress Bar\nCompleted"
                 self.titleLabel.alpha = 1
             })
@@ -204,12 +208,10 @@ extension ProgressViewController: CAAnimationDelegate {
             delay: 0.5,
             options: .curveEaseInOut,
             animations: {
-                self.view.bringSubviewToFront(self.button)
                 self.button.setTitle("Reset animation", for: .normal)
                 self.button.alpha = 1
             }, completion: {_ in
                 self.button.isEnabled = true
-                self.button.addTarget(self, action: #selector(self.resetViewController), for: .touchUpInside)
             })
     }
 }
