@@ -51,7 +51,7 @@ class ProgressViewController: UIViewController {
         titleLabel.text =  "Circle Progress Bar Animation"
         titleLabel.textColor = .systemBlue
 
-        button.setTitle("Tap to animate xrogress bar", for: .normal)
+        button.setTitle("Tap to animate progress bar", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.setTitleColor(UIColor.systemBlue.withAlphaComponent(0.5), for: .disabled)
         

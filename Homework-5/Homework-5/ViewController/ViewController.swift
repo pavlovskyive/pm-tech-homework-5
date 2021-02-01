@@ -123,8 +123,16 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
         let cellViewController = data[indexPath.row]
+        addChild(cellViewController)
+        
+        // This particular line is a fix to some of the view controllers not updating their
+        // safe area as mentioned in https://stackoverflow.com/a/52153891
+        view.addSubview(cellViewController.view)
+        
         cellViewController.view.frame = cell.bounds
         cell.addSubview(cellViewController.view)
+        
+        cellViewController.didMove(toParent: self)
         
         return cell
     }
