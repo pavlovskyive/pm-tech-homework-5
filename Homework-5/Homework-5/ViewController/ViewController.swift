@@ -123,11 +123,8 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
         let cellViewController = data[indexPath.row]
-        addChild(cellViewController)
         
-        // This particular line is a fix to some of the view controllers not updating their
-        // safe area as mentioned in https://stackoverflow.com/a/52153891
-        view.addSubview(cellViewController.view)
+        addChild(cellViewController)
         
         cellViewController.view.frame = cell.bounds
         cell.addSubview(cellViewController.view)
@@ -135,6 +132,12 @@ extension ViewController: UICollectionViewDataSource {
         cellViewController.didMove(toParent: self)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
     }
 }
 
