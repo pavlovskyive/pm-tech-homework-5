@@ -8,64 +8,28 @@
 import UIKit
 import Homework
 
-class ConfettiViewController: UIViewController {
-    
-    // MARK: - Variables
-    
-    lazy var titleLabel: TitleLabel = {
-        
-        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "Confetti Animation")
-        
-        for i in 0..<attributedString.length {
-            let range = NSRange(location: i, length: 1)
+fileprivate extension String {
+
+    func toRandomColoredString() -> NSAttributedString {
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: self)
+
+        for index in 0..<attributedString.length {
+            let range = NSRange(location: index, length: 1)
             let randomColor = UIColor.randomConfettiColor()
-            
+
             attributedString.addAttribute(.foregroundColor, value: randomColor, range: range)
         }
-        
-        let titleLabel = TitleLabel()
-        titleLabel.attributedText = attributedString
-        
-        return titleLabel
-    }()
-    
-    // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupViews()
-    }
-    
-    // MARK: - Methods
 
-    // Setup View
-    private func setupViews() {
-        
-        if #available(iOS 13, *) {
-            view.backgroundColor = .systemBackground
-        } else {
-            view.backgroundColor = .white
-        }
-        
-        view.addSubview(titleLabel)
-        
-        let confettiView = ParticleView()
-        confettiView.emitterType = .confetti
-        confettiView.translatesAutoresizingMaskIntoConstraints = false
-        view.insertSubview(confettiView, at: 0)
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -10),
-            
-            confettiView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            confettiView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            confettiView.topAnchor.constraint(equalTo: view.topAnchor),
-            confettiView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        return attributedString
+    }
+}
+
+class ConfettiViewController: ParticleViewController {
+
+    // MARK: - Lifecycle
+
+    convenience init() {
+        let confettiView = ConfettiView()
+        self.init(title: "Confetti Animation".toRandomColoredString(), particleView: confettiView)
     }
 }

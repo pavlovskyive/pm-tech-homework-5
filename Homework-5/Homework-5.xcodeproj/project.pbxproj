@@ -12,6 +12,10 @@
 		7920878925C5C6AB008B1D54 /* FireworksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7920878825C5C6AB008B1D54 /* FireworksViewController.swift */; };
 		7920878C25C5D664008B1D54 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7920878B25C5D664008B1D54 /* ProgressViewController.swift */; };
 		79697BA025C7092A004BB283 /* Homework in Frameworks */ = {isa = PBXBuildFile; productRef = 79697B9F25C7092A004BB283 /* Homework */; };
+		797CF76425CB25C0002EC72B /* SnowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CF76325CB25C0002EC72B /* SnowView.swift */; };
+		797CF76725CB25DD002EC72B /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CF76625CB25DD002EC72B /* ConfettiView.swift */; };
+		797CF76A25CB2603002EC72B /* FireworksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CF76925CB2603002EC72B /* FireworksView.swift */; };
+		797CF76D25CB2636002EC72B /* ParticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CF76C25CB2636002EC72B /* ParticleViewController.swift */; };
 		79BD935C25C2CFC80054DB44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD935B25C2CFC80054DB44 /* AppDelegate.swift */; };
 		79BD935E25C2CFC80054DB44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD935D25C2CFC80054DB44 /* SceneDelegate.swift */; };
 		79BD936525C2CFCC0054DB44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BD936425C2CFCC0054DB44 /* Assets.xcassets */; };
@@ -27,6 +31,10 @@
 		7920878525C5C1FD008B1D54 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		7920878825C5C6AB008B1D54 /* FireworksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworksViewController.swift; sourceTree = "<group>"; };
 		7920878B25C5D664008B1D54 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		797CF76325CB25C0002EC72B /* SnowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowView.swift; sourceTree = "<group>"; };
+		797CF76625CB25DD002EC72B /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		797CF76925CB2603002EC72B /* FireworksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworksView.swift; sourceTree = "<group>"; };
+		797CF76C25CB2636002EC72B /* ParticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleViewController.swift; sourceTree = "<group>"; };
 		79BD935825C2CFC80054DB44 /* Homework-5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Homework-5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79BD935B25C2CFC80054DB44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79BD935D25C2CFC80054DB44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +66,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		797CF76125CB2598002EC72B /* ParticleView */ = {
+			isa = PBXGroup;
+			children = (
+				797CF76225CB25A6002EC72B /* Subclasses */,
+				79EC7C0425C59E4E0098AB13 /* ParticleView.swift */,
+			);
+			path = ParticleView;
+			sourceTree = "<group>";
+		};
+		797CF76225CB25A6002EC72B /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				797CF76325CB25C0002EC72B /* SnowView.swift */,
+				797CF76625CB25DD002EC72B /* ConfettiView.swift */,
+				797CF76925CB2603002EC72B /* FireworksView.swift */,
+			);
+			path = Subclasses;
+			sourceTree = "<group>";
+		};
 		799F566625C2E51B004A8509 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +93,7 @@
 				7920878125C5BA5E008B1D54 /* ConfettiViewController.swift */,
 				7920878825C5C6AB008B1D54 /* FireworksViewController.swift */,
 				7920878B25C5D664008B1D54 /* ProgressViewController.swift */,
+				797CF76C25CB2636002EC72B /* ParticleViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -137,8 +165,8 @@
 		79EC7C0025C59CD80098AB13 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				797CF76125CB2598002EC72B /* ParticleView */,
 				79EC7C0125C59CEF0098AB13 /* GradientView.swift */,
-				79EC7C0425C59E4E0098AB13 /* ParticleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -153,6 +181,7 @@
 				79BD935425C2CFC80054DB44 /* Sources */,
 				79BD935525C2CFC80054DB44 /* Frameworks */,
 				79BD935625C2CFC80054DB44 /* Resources */,
+				797CF76F25CB31A2002EC72B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -210,17 +239,41 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		797CF76F25CB31A2002EC72B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		79BD935425C2CFC80054DB44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797CF76725CB25DD002EC72B /* ConfettiView.swift in Sources */,
 				7920878925C5C6AB008B1D54 /* FireworksViewController.swift in Sources */,
 				79BD937325C2D0A10054DB44 /* ViewController.swift in Sources */,
 				79BD935C25C2CFC80054DB44 /* AppDelegate.swift in Sources */,
+				797CF76A25CB2603002EC72B /* FireworksView.swift in Sources */,
 				7920878C25C5D664008B1D54 /* ProgressViewController.swift in Sources */,
 				79BD935E25C2CFC80054DB44 /* SceneDelegate.swift in Sources */,
 				7920878225C5BA5E008B1D54 /* ConfettiViewController.swift in Sources */,
+				797CF76D25CB2636002EC72B /* ParticleViewController.swift in Sources */,
+				797CF76425CB25C0002EC72B /* SnowView.swift in Sources */,
 				79EC7C0525C59E4E0098AB13 /* ParticleView.swift in Sources */,
 				79EC7C0225C59CEF0098AB13 /* GradientView.swift in Sources */,
 				79EC7BFE25C59AC70098AB13 /* SnowViewController.swift in Sources */,
